@@ -1,5 +1,5 @@
 // final_response object
-const finalResponse = {};
+const finalResponse = {}
 
 function findPath(obj, key, value, path = '') {
     if (typeof obj !== 'object' || obj === null) {
@@ -11,7 +11,8 @@ function findPath(obj, key, value, path = '') {
             const isNumericIndex = Array.isArray(obj) && !isNaN(prop);
             let newPath = path ? `${path}->${isNumericIndex ? prop : `'${prop}'`}` : `${isNumericIndex ? prop : `'${prop}'`}`;
             if (prop === key && obj[prop] === value) {
-                return newPath;
+                // Return the path without the key since it will be added in the main function
+                return path;
             }
             let foundPath = findPath(obj[prop], key, value, newPath);
             if (foundPath) {
@@ -22,6 +23,7 @@ function findPath(obj, key, value, path = '') {
 
     return null;
 }
+
 
 function main() {
     const keyToFind = ''; // The key you're looking for
